@@ -1,5 +1,5 @@
 logs
-target
+/target
 project/boot
 project/project
 project/target
