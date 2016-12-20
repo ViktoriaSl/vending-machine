@@ -15,7 +15,7 @@ class CoinsDALTest extends AsyncFlatSpec with AbstractPersistenceTest with Befor
   val modules = new Modules {
   }
   
-  "coins" should "should be created" in {
+  "coins" should "be created" in {
     modules.coinsDal.createTable().flatMap { c =>
       modules.coinsDal.insert(coins).map(c => assert(c == 1))
       modules.coinsDal.findById(1).map(c => assert(c contains coins))

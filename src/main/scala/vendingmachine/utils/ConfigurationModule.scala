@@ -17,5 +17,5 @@ trait ConfigurationModuleImpl extends Configuration {
     }
   }
   
-  def config = internalConfig
+  def config: Config = internalConfig
 }

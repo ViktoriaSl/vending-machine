@@ -24,7 +24,7 @@ class VendingMachineService(modules: Configuration with PersistenceModule) {
     }
   }
   def getDrink(drinkId: Int): Future[Either[Drink, MachineOperationResult]] =
-    modules.coinsDal.findById(1).flatMap { payment =>
+    modules.coinsDal.findById(coinsId).flatMap { payment =>
       if (payment.isEmpty)
         Future {Right(NotEnoughMoney)}
       else {
@@ -38,7 +38,7 @@ class VendingMachineService(modules: Configuration with PersistenceModule) {
     val isEfford = drink.price <= payment.get.number
     if (isEfford) {
       val change = payment.get.copy(number = payment.get.number - drink.price)
-      modules.coinsDal.update(payment.get.copy(0))
+      modules.coinsDal.update(payment.get.copy(number = 0))
       Left(Drink(drink.drinkName, change))
     }
     else
