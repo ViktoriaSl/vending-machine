@@ -1,7 +1,6 @@
 package vendingmachine.utils
 
 import java.io.File
-
 import com.typesafe.config.{Config, ConfigFactory}
 
 trait Configuration {
