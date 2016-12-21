@@ -16,13 +16,12 @@ trait AbstractPersistenceTest extends AsyncFlatSpec {
   
   trait PersistenceModuleTest extends PersistenceModule with DbModule {
     this: Configuration =>
-    override val coinsDal = new BaseDalImpl[ConsTable, Coins](TableQuery[ConsTable]) {}
-    
+    private val dbConfig: DatabaseConfig[JdbcProfile] = DatabaseConfig.forConfig("h2test")
     override implicit val profile: JdbcProfile = dbConfig.driver
     override implicit val db: JdbcProfile#Backend#Database = dbConfig.db
+    override val coinsDal = new BaseDalImpl[ConsTable, Coins](TableQuery[ConsTable]) {}
     override val drinksDal = new BaseDalImpl[DrinksTable, DrinkInfo](TableQuery[DrinksTable]) {}
     val self = this
-    private val dbConfig: DatabaseConfig[JdbcProfile] = DatabaseConfig.forConfig("h2test")
     
   }
   
