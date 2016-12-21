@@ -1,6 +1,8 @@
 
+Vending machine that allows next points:
 
-Vending machine that allows 
+- add user coins to machine
+- buy drink and get the rest coins from machine if there is enough coins for drink and reject in other case
 
 #Running
 
